@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".PickupFragment">
+
+    <data>
+        <variable
+            name="summaryFragment"
+            type="com.whitneygoodey.pizza.SummaryFragment" />
+        <variable
+            name="viewModel"
+            type="com.whitneygoodey.pizza.model.OrderViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vertical_space">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name_text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="@{viewModel.name}"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.setName(text.toString())}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/size_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/name_text_field"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/size"/>
+
+            <TextView
+                android:id="@+id/size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/side_margin"
+                android:text="@{viewModel.size}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/size_label" />
+
+            <TextView
+                android:id="@+id/crust_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/size_text"
+                app:layout_constraintStart_toStartOf="@id/size_label"
+                android:text="@string/crust"/>
+
+            <TextView
+                android:id="@+id/crust_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/crust_label"
+                app:layout_constraintStart_toStartOf="@id/size_text"
+                android:text="@{viewModel.crust}"/>
+
+            <TextView
+                android:id="@+id/sauce_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/crust_text"
+                app:layout_constraintStart_toStartOf="@id/size_label"
+                android:text="@string/sauce"/>
+
+            <TextView
+                android:id="@+id/sauce_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/sauce_label"
+                app:layout_constraintStart_toStartOf="@id/size_text"
+                android:text="@{viewModel.sauce}"/>
+
+            <TextView
+                android:id="@+id/toppings_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/sauce_text"
+                app:layout_constraintStart_toStartOf="@id/size_label"
+                android:text="@string/toppings"/>
+
+            <TextView
+                android:id="@+id/toppings_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/toppings_label"
+                app:layout_constraintStart_toStartOf="@id/size_text"
+                android:text="@{summaryFragment.getToppings()}"/>
+
+
+
+            <View
+                android:id="@+id/summary_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/toppings_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+            <TextView
+                android:id="@+id/delivery_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/summary_divider"
+                app:layout_constraintStart_toStartOf="@id/size_label"
+                tools:text="I'll pickup my order at about 3:00 PM."/>
+
+            <TextView
+                android:id="@+id/address_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/delivery_label"
+                app:layout_constraintStart_toStartOf="@id/size_text"
+                android:text="@{viewModel.getFullAddress()}"/>
+
+            <View
+                android:id="@+id/group_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/address_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/subtotal_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/group_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{viewModel.cost.toString()}"
+                tools:text="$10.00"/>
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> summaryFragment.submitOrder()}"
+                android:text="@string/next"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/subtotal_text_view"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> summaryFragment.cancelOrder()}"
+                android:text="@string/cancel"
+                app:layout_constraintBaseline_toBaselineOf="@id/next_button"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

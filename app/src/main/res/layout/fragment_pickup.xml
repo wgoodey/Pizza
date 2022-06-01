@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".PickupFragment">
+
+    <data>
+        <variable
+            name="pickupFragment"
+            type="com.whitneygoodey.pizza.PickupFragment" />
+        <variable
+            name="viewModel"
+            type="com.whitneygoodey.pizza.model.OrderViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vertical_space">
+
+            <TextView
+                android:id="@+id/pickup_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/pickup_info(viewModel.getCostOfDelivery())}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Select a pickup/delivery time. Delivery is an additional $5.75 charge."/>
+
+            <RadioGroup
+                android:id="@+id/pickupOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/pickup_info"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.pickupOptions[0]}"
+                    android:checked="@{viewModel.pickupTime.equals(viewModel.pickupOptions[0])}"
+                    android:onClick="@{() -> viewModel.setPickupTime(viewModel.pickupOptions[0])}"
+                    tools:text="3:45 PM 5/4"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.pickupOptions[1]}"
+                    android:checked="@{viewModel.pickupTime.equals(viewModel.pickupOptions[1])}"
+                    android:onClick="@{() -> viewModel.setPickupTime(viewModel.pickupOptions[1])}"
+                    tools:text="4:45 PM 5/4"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.pickupOptions[2]}"
+                    android:checked="@{viewModel.pickupTime.equals(viewModel.pickupOptions[2])}"
+                    android:onClick="@{() -> viewModel.setPickupTime(viewModel.pickupOptions[2])}"
+                    tools:text="5:45 PM 5/4"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.pickupOptions[3]}"
+                    android:checked="@{viewModel.pickupTime.equals(viewModel.pickupOptions[3])}"
+                    android:onClick="@{() -> viewModel.setPickupTime(viewModel.pickupOptions[3])}"
+                    tools:text="6:45 PM 5/4"/>
+            </RadioGroup>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/delivery_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deliver_my_order"
+                android:onCheckedChanged="@{(_, isChecked) -> viewModel.setDelivery(isChecked)}"
+                android:checked="@{viewModel.delivery}"
+                app:layout_constraintTop_toBottomOf="@id/pickupOptions"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <View
+                android:id="@+id/group_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/pickupOptions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            <TextView
+                android:id="@+id/subtotal_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/group_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{viewModel.cost.toString()}"
+                tools:text="$10.00"/>
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> pickupFragment.goToNextScreen()}"
+                android:text="@string/next"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/subtotal_text_view"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> pickupFragment.cancelOrder()}"
+                android:text="@string/cancel"
+                app:layout_constraintBaseline_toBaselineOf="@id/next_button"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BaseFragment">
+
+    <data>
+        <variable
+            name="baseFragment"
+            type="com.whitneygoodey.pizza.BaseFragment" />
+        <variable
+            name="viewModel"
+            type="com.whitneygoodey.pizza.model.OrderViewModel" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/side_margin">
+
+            <TextView
+                android:id="@+id/info_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/crust"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/crust_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/info_text_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.crust.equals(@string/hand_tossed)}"
+                    android:onClick="@{() -> viewModel.setCrust(@string/hand_tossed)}"
+                    android:text="@string/hand_tossed"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.crust.equals(@string/thin)}"
+                    android:onClick="@{() -> viewModel.setCrust(@string/thin)}"
+                    android:text="@string/thin"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.crust.equals(@string/cheesy_crust)}"
+                    android:onClick="@{() -> viewModel.setCrust(@string/cheesy_crust)}"
+                    android:text="@string/cheesy_crust"/>
+
+            </RadioGroup>
+
+            <View
+                android:id="@+id/group_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@+id/crust_radio_group"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/sauce_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/group_divider"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/sauce"/>
+
+            <RadioGroup
+                android:id="@+id/sauce_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/sauce_text_view"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.sauce.equals(@string/tomato_sauce)}"
+                    android:onClick="@{() -> viewModel.setSauce(@string/tomato_sauce)}"
+                    android:text="@string/tomato_sauce"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.sauce.equals(@string/white_sauce)}"
+                    android:onClick="@{() -> viewModel.setSauce(@string/white_sauce)}"
+                    android:text="@string/white_sauce"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/subtotal_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/vertical_space"
+                app:layout_constraintTop_toBottomOf="@id/sauce_radio_group"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{viewModel.cost.toString()}"
+                tools:text="$10.00"/>
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> baseFragment.goToNextScreen()}"
+                android:layout_marginVertical="@dimen/vertical_space"
+                android:text="@string/next"
+                app:layout_constraintTop_toBottomOf="@id/subtotal_text_view"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> baseFragment.cancelOrder()}"
+                android:text="@string/cancel"
+                app:layout_constraintBaseline_toBaselineOf="@id/next_button"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+
+
+
+
+
+</layout>

@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Pizza</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+    <string name="send_order">Send Order</string>
+
+    <string name="size">Size</string>
+    <string name="small">Small</string>
+    <string name="medium">Medium</string>
+    <string name="large">Large</string>
+    <string name="select_base">Select a base</string>
+    <string name="select_crust">Select a crust</string>
+    <string name="select_sauce">Select a sauce</string>
+    <string name="select_toppings">Select toppings</string>
+    <string name="select_pickup">Select a pickup time</string>
+    <string name="toppings_info">Select as many toppings as you want. \nNote: adding extra costs %s more per topping.</string>
+    <string name="pickup_info">Select a pickup/delivery time. Delivery is an additional %s charge.</string>
+
+    <string name="crust">Crust</string>
+    <string name="hand_tossed">Original hand tossed</string>
+    <string name="thin">Thin and crispy</string>
+    <string name="cheesy_crust">Cheesy crust</string>
+    <string name="sauce">Sauce</string>
+    <string name="tomato_sauce">Tomato sauce</string>
+    <string name="white_sauce">White sauce</string>
+
+    <string name="extra">extra</string>
+    <string name="extra_topping">extra %1s</string>
+
+    <string name="toppings">Toppings</string>
+    <string name="cheese">Cheese</string>
+    <string name="pepperoni">Pepperoni</string>
+    <string name="sausage">Sausage</string>
+    <string name="bacon">Bacon</string>
+    <string name="anchovies">Anchovies</string>
+
+    <string name="mushrooms">Mushrooms</string>
+    <string name="peppers">Peppers</string>
+    <string name="artichokes">Artichoke hearts</string>
+
+    <string name="new_order">New Pizza Order</string>
+    <string name="deliver_my_order">Deliver my order</string>
+    <string name="deliver_at">Deliver my order at about %s.</string>
+    <string name="pickup_at">I\'ll pickup my order at about %s.</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="zip">Zip Code</string>
+    <string name="phone">Phone</string>
+
+
+    <string name="name_required">We need a name for your order!</string>
+    <string name="address_required">We need a complete address to deliver your order!</string>
+    <string name="phone_required">We need a phone number just in case there\'s a problem!</string>
+
+</resources>
